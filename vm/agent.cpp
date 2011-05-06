@@ -1,5 +1,7 @@
 #include "config.h"
 
+#define PATH_MAX 1024
+
 #include <string.h>
 #include <limits.h>
 #include <sys/types.h>
