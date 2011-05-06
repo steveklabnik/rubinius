@@ -301,6 +301,8 @@ class Configure
     feature "realpath", true
     feature "timeradd", true
     feature "crypt", true
+    feature "nanosleep", true
+    feature "getrusage", true
 
     o.doc "\n Help!"
 
@@ -824,6 +826,14 @@ int main() { return tgetnum(""); }
 
     if @features["crypt"] and has_function("crypt", ["unistd.h"])
       @defines << "HAS_CRYPT"
+    end
+
+    if @features["getrusage"] and has_function("getrusage", ["sys/resource.h"])
+      @defines << "HAS_GETRUSAGE"
+    end
+
+    if @features["nanosleep"] and has_function("nanosleep", ["time.h"])
+      @defines << "HAS_NANOSLEEP"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])

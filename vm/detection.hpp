@@ -84,4 +84,17 @@ const char *crypt(const char *key, const char *salt){
 	return key; //dear god, this implementation is temporary
 }
 #endif
+
+#ifndef HAS_GETRUSAGE
+int getrusage(int who, struct rusage *r_usage){
+	return 0; //success!
+}
+#endif
+
+#ifndef HAS_NANOSLEEP
+int nanosleep(const struct timespec *req, struct timespec *rem){
+	return 0; //derp
+}
+#endif
+
 #endif
