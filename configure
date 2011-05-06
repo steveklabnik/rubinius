@@ -303,6 +303,7 @@ class Configure
     feature "crypt", true
     feature "nanosleep", true
     feature "getrusage", true
+    feature "timegm", true
 
     o.doc "\n Help!"
 
@@ -834,6 +835,10 @@ int main() { return tgetnum(""); }
 
     if @features["nanosleep"] and has_function("nanosleep", ["time.h"])
       @defines << "HAS_NANOSLEEP"
+    end
+
+    if @features["timegm"] and has_function("timegm", ["time.h"])
+      @defines << "HAS_TIMEGM"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])

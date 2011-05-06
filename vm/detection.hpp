@@ -1,6 +1,8 @@
 #ifndef RBX_DETECTION
 #define RBX_DETECTION
 
+#include<time.h>
+
 /*
  * This file, when included, defines a bunch of macros that have detected
  * values about the current machine.
@@ -94,6 +96,13 @@ int getrusage(int who, struct rusage *r_usage){
 #ifndef HAS_NANOSLEEP
 int nanosleep(const struct timespec *req, struct timespec *rem){
 	return 0; //derp
+}
+#endif
+
+#ifndef HAS_TIMEGM
+time_t timegm (struct tm *tm){
+	time_t t = 0;
+	return t;
 }
 #endif
 
