@@ -77,6 +77,11 @@ char *realpath(char *name, char *resolved){
 		}                       \
 	} while (0);
 
+#endif
 
+#ifndef HAS_CRYPT
+const char *crypt(const char *key, const char *salt){
+	return key; //dear god, this implementation is temporary
+}
 #endif
 #endif

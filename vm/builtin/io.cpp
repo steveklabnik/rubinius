@@ -18,6 +18,10 @@
 #ifdef __OpenBSD__
 #include <sys/uio.h>
 #endif
+#ifdef __xomb__
+#include <sys/uio.h>
+#include<sys/select.h>
+#endif
 
 #include "builtin/io.hpp"
 #include "builtin/array.hpp"

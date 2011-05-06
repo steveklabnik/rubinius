@@ -22,6 +22,10 @@
 #include <iostream>
 #include <ctype.h>
 
+#ifdef __xomb__
+#include<sys/select.h>
+#endif
+
 namespace rubinius {
 
   void String::init(STATE) {

@@ -300,6 +300,7 @@ class Configure
     feature "ruby-readline", false
     feature "realpath", true
     feature "timeradd", true
+    feature "crypt", true
 
     o.doc "\n Help!"
 
@@ -819,6 +820,10 @@ int main() { return tgetnum(""); }
 
     if @features["timeradd"] and has_function("timeradd", ["sys/time.h"])
       @defines << "HAS_TIMERADD"
+    end
+
+    if @features["crypt"] and has_function("crypt", ["unistd.h"])
+      @defines << "HAS_CRYPT"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])
