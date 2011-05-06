@@ -108,8 +108,10 @@ namespace rubinius {
 
     tm.tm_wday = -1;
 #ifndef RBX_WINDOWS
+#ifndef __xomb__
     tm.tm_gmtoff = 0;
     tm.tm_zone = 0;
+#endif
 #endif
     tm.tm_year = year->to_native() - 1900;
 
