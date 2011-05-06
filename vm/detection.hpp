@@ -48,4 +48,11 @@
 #define USE_EXECINFO
 #endif
 
+#ifndef HAS_REALPATH
+/* this is basically a no-op */
+char *realpath(char *name, char *resolved){
+	return name;
+}
+#endif
+
 #endif
