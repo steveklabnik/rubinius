@@ -186,8 +186,14 @@ namespace thread {
       int max = 31;
       int min = 0;
 #else
+#ifdef __xomb__
+      // Hahaha, priorities. You're funny.
+      int max = 1;
+      int min = 0;
+#else
       int max = sched_get_priority_max(_policy);
       int min = sched_get_priority_min(_policy);
+#endif
 #endif
 
       if(min > priority) {
