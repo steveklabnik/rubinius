@@ -184,6 +184,10 @@ class Configure
       @cxx = cxx
     end
 
+		o.on "--sizeof-long", "COMPILER", "Override the sizeof(long), useful when cross-compiling" do |sol|
+      @sizeof_long = sol
+    end
+
     o.doc "\n LLVM settings"
 
     o.on "--disable-llvm", "Don't build with LLVM" do
@@ -831,7 +835,7 @@ int main() { return tgetnum(""); }
 
     @log.write ""
 
-    detect_sizeof_long
+    detect_sizeof_long unless @sizeof_long != 0
     detect_endian
     detect_tr1_hash
     detect_x86_32bit
