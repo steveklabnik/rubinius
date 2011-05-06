@@ -182,7 +182,7 @@ namespace thread {
 
       pthread_check(pthread_getschedparam(native_, &_policy, &params));
 #ifdef __OpenBSD__
-      // The shed_get_priority_max function is not exposed.
+      // The sched_get_priority_max function is not exposed.
       int max = 31;
       int min = 0;
 #else
