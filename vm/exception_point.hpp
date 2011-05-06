@@ -38,6 +38,8 @@ namespace rubinius {
 
 #ifdef __xomb__
 #define PLACE_EXCEPTION_POINT(ep) setjmp(ep.__jump_buffer)
+#define _setjmp(x)       set_jump(x)
+#define _longjmp(x, y)   long_jump(x, y)
 #else
 #define PLACE_EXCEPTION_POINT(ep) _setjmp(ep.__jump_buffer)
 #endif
