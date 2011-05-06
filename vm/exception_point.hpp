@@ -36,6 +36,10 @@ namespace rubinius {
   };
 }
 
-#define PLACE_EXCEPTION_POINT(ep) set_jump(ep.__jump_buffer)
+#ifdef __xomb__
+#define PLACE_EXCEPTION_POINT(ep) setjmp(ep.__jump_buffer)
+#else
+#define PLACE_EXCEPTION_POINT(ep) _setjmp(ep.__jump_buffer)
+#endif
 
 #endif
