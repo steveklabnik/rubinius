@@ -65,7 +65,7 @@ char *realpath(char *name, char *resolved){
   			++(result)->tv_sec;                 \
   				(result)->tv_usec -= 1000000;               \
   		}                       \
-  } while (0) 
+  } while (0);
 
 #define timersub(a, b, result)                  \
 	do {                        \
@@ -75,7 +75,7 @@ char *realpath(char *name, char *resolved){
 			--(result)->tv_sec;                 \
 			(result)->tv_usec += 1000000;               \
 		}                       \
-	} while (0)
+	} while (0);
 
 
 #endif
