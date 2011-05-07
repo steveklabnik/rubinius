@@ -15,6 +15,10 @@
 #include <sys/select.h>
 #endif
 
+#ifdef __xomb__
+#include<sys/signal.h>
+#endif
+
 #include "windows_compat.h"
 
 namespace rubinius {
@@ -158,7 +162,12 @@ namespace rubinius {
     action.sa_flags = 0;
     sigfillset(&action.sa_mask);
 
+#ifdef __xomb__
+    action.sa_handler(sig);
+#else
     sigaction(sig, &action, NULL);
+#endif
+
 #endif
   }
 
