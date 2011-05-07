@@ -40,6 +40,12 @@ time_t ffi_timezone() {
   return timezone;
 }
 #else
+#ifdef __xomb__
+time_t ffi_timezone() {
+  time_t t = 0; //we don't have this implemented
+	return t;
+}
+#else
 // try FreeBSD extensions to struct tm
 time_t ffi_timezone() {
   struct tm *lt;
@@ -50,6 +56,7 @@ time_t ffi_timezone() {
 
   return lt->tm_gmtoff;
 }
+#endif
 #endif
 
 char* ffi_tzname(int dst) {
