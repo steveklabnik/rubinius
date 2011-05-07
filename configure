@@ -304,6 +304,7 @@ class Configure
     feature "nanosleep", true
     feature "getrusage", true
     feature "timegm", true
+    feature "lstat", true
 
     o.doc "\n Help!"
 
@@ -839,6 +840,10 @@ int main() { return tgetnum(""); }
 
     if @features["timegm"] and has_function("timegm", ["time.h"])
       @defines << "HAS_TIMEGM"
+    end
+
+    if @features["lstat"] and has_function("lstat", ["sys/stat.h"])
+      @defines << "HAS_LSTAT"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])

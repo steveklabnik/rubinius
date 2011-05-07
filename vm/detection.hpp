@@ -105,5 +105,8 @@ time_t timegm (struct tm *tm){
 	return t;
 }
 #endif
+#ifndef HAS_LSTAT
+int lstat(const char *, struct stat *);
+#endif
 
 #endif
