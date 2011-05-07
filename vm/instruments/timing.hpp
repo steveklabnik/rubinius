@@ -1,6 +1,9 @@
 #ifndef RBX_INSTRUMENTS_TIMING_HPP
 #define RBX_INSTRUMENTS_TIMING_HPP
 
+#ifdef __xomb__
+#include "vm/detection.hpp"
+#endif
 int _EXFUN(clock_gettime, (clockid_t clock_id, struct timespec *tp));
 
 #include <stdint.h>

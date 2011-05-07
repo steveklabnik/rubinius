@@ -305,6 +305,7 @@ class Configure
     feature "getrusage", true
     feature "timegm", true
     feature "lstat", true
+    feature "clock_gettime", true
 
     o.doc "\n Help!"
 
@@ -844,6 +845,10 @@ int main() { return tgetnum(""); }
 
     if @features["lstat"] and has_function("lstat", ["sys/stat.h"])
       @defines << "HAS_LSTAT"
+    end
+
+    if @features["clock_gettime"] and has_function("clock_gettime", ["time.h"])
+      @defines << "HAS_CLOCK_GETTIME"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])
