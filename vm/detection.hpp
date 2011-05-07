@@ -3,6 +3,8 @@
 
 #include<time.h>
 #include<sys/signal.h>
+#include<sys/resource.h>
+#include<sys/stat.h>
 
 /*
  * This file, when included, defines a bunch of macros that have detected
@@ -83,28 +85,19 @@ char *realpath(char *name, char *resolved){
 #endif
 
 #ifndef HAS_CRYPT
-const char *crypt(const char *key, const char *salt){
-	return key; //dear god, this implementation is temporary
-}
+const char *crypt(const char *, const char *);
 #endif
 
 #ifndef HAS_GETRUSAGE
-int getrusage(int who, struct rusage *r_usage){
-	return 0; //success!
-}
+int getrusage(int, struct rusage *);
 #endif
 
 #ifndef HAS_NANOSLEEP
-int nanosleep(const struct timespec *req, struct timespec *rem){
-	return 0; //derp
-}
+int nanosleep(const struct timespec *, struct timespec *);
 #endif
 
 #ifndef HAS_TIMEGM
-time_t timegm (struct tm *tm){
-	time_t t = 0;
-	return t;
-}
+time_t timegm (struct tm *);
 #endif
 
 #ifndef HAS_LSTAT

@@ -820,7 +820,11 @@ strftime_extended(char *s, size_t maxsize, const char *format, const struct tm *
 #ifdef RBX_WINDOWS
         off = _timezone / 60;
 #else
+#ifdef __xomb__
+        off = _timezone / 60;
+#else
 				off = timeptr->tm_gmtoff / 60;
+#endif
 #endif
 #else /* !HAVE_TM_ZONE */
 #if HAVE_VAR_TIMEZONE
@@ -876,7 +880,12 @@ strftime_extended(char *s, size_t maxsize, const char *format, const struct tm *
 			tp = tzname[i];
 #else
 #ifdef HAVE_TM_ZONE
+#ifdef __xomb__
+			// I don't know what to do here.
+			tp = "UTC";
+#else
 			tp = timeptr->tm_zone;
+#endif
 #else
 #ifdef HAVE_TM_NAME
 			tp = timeptr->tm_name;
