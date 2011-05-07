@@ -27,6 +27,10 @@
 #include <execinfo.h>
 #endif
 
+#ifdef __xomb__
+#include<sys/signal.h>
+#endif
+
 #include "signal.hpp"
 #include "object_utils.hpp"
 
