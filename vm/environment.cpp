@@ -259,7 +259,12 @@ namespace rubinius {
     action.sa_handler = null_func;
     action.sa_flags = 0;
     sigfillset(&action.sa_mask);
+#ifdef __xomb__
+    sa_sigaction(SIGVTALRM, &action, (struct sigaction *)NULL);
+#else
     sigaction(SIGVTALRM, &action, NULL);
+#endif
+
 #endif
 
     state->set_run_signals(true);
