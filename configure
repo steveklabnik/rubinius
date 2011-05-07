@@ -306,6 +306,7 @@ class Configure
     feature "timegm", true
     feature "lstat", true
     feature "clock_gettime", true
+    feature "pthread_sigmask", true
 
     o.doc "\n Help!"
 
@@ -849,6 +850,10 @@ int main() { return tgetnum(""); }
 
     if @features["clock_gettime"] and has_function("clock_gettime", ["time.h"])
       @defines << "HAS_CLOCK_GETTIME"
+    end
+
+    if @features["pthread_sigmask"] and has_function("pthread_sigmask", ["pthread.h"])
+      @defines << "HAS_PTHREAD_SIGMASK"
     end
 
     if @features["execinfo"] and has_function("backtrace", ["execinfo.h"])

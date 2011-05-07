@@ -2,6 +2,7 @@
 #define RBX_DETECTION
 
 #include<time.h>
+#include<sys/signal.h>
 
 /*
  * This file, when included, defines a bunch of macros that have detected
@@ -112,6 +113,10 @@ int lstat(const char *, struct stat *);
 
 #ifndef HAS_CLOCK_GETTIME
 int clock_gettime(clockid_t, struct timespec *);
+#endif
+
+#ifndef HAS_PTHREAD_SIGMASK
+int pthread_sigmask(int how, const sigset_t *, sigset_t *);
 #endif
 
 #endif
