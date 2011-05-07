@@ -264,7 +264,7 @@ namespace rubinius {
     action.sa_flags = 0;
     sigfillset(&action.sa_mask);
 #ifdef __xomb__
-    sa_sigaction(SIGVTALRM, &action, (struct sigaction *)NULL);
+    action.sa_handler(SIGVTALRM);
 #else
     sigaction(SIGVTALRM, &action, NULL);
 #endif
