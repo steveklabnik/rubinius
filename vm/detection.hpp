@@ -89,7 +89,14 @@ const char *crypt(const char *, const char *);
 #endif
 
 #ifndef HAS_GETRUSAGE
+typedef unsigned int rlim_t;
+struct rlimit {
+	rlim_t rlim_cur;
+	rlim_t rlim_max;
+};
+#define RLIMIT_STACK  5
 int getrusage(int, struct rusage *);
+int getrlimit(int, struct rlimit *); 
 #endif
 
 #ifndef HAS_NANOSLEEP
