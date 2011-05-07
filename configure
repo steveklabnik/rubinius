@@ -27,6 +27,7 @@ class Configure
     @little_endian = false
     @sizeof_long = 0
 
+
     # TODO: For better cross-compiling support, it may be necessary to
     # use the feature facility to check for a define in the compiler.
     @windows = (@host =~ /mingw|mswin/) != nil
@@ -62,6 +63,7 @@ class Configure
     @llvm_skip_prebuilt     = false
     @llvm_prebuilt_name     = nil
     @llvm_system_name       = get_system_name
+    @llvm_target            = nil
 
     @llvm_version           = "2.8"
     @llvm_api_version       = 208
@@ -216,6 +218,10 @@ class Configure
 
     o.on "--llvm-path", "PATH", "File system path to the directory containing LLVM" do |dir|
       @llvm_path = dir
+    end
+
+    o.on "--llvm-target", "NAME", "Triple of target system for a cross-compiled llvm" do |name|
+      @llvm_target = name
     end
 
     o.on "--update-prebuilt", "Update prebuilt LLVM packages from the internet" do
@@ -600,6 +606,8 @@ class Configure
       return
     end
 
+		@target_host = @llvm_target || @host
+
     return if !@llvm_skip_system && setup_config
     return if !@llvm_skip_prebuilt && setup_prebuilt
     return if setup_source
@@ -951,6 +959,7 @@ module Rubinius
     :defines        => #{@defines.inspect},
     :curses         => #{@curses.inspect},
     :host           => "#{@host}",
+    :target_host    => "#{@target_host}",
     :cpu            => "#{@cpu}",
     :vendor         => "#{@vendor}",
     :os             => "#{@os}",

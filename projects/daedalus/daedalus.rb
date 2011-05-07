@@ -178,6 +178,7 @@ module Daedalus
     attr_reader :path, :cflags, :ldflags, :log
 
     def add_library(lib)
+			puts "adding library: #{lib.path}: #{lib.ldflags}"
       if f = lib.cflags
         @cflags += f
       end

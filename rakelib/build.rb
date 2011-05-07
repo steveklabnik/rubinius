@@ -57,11 +57,17 @@ def host_triple
   Rubinius::BUILD_CONFIG[:host]
 end
 
+def target_triple
+  Rubinius::BUILD_CONFIG[:target_host]
+end
+
 def gcc_major_version
   `#{$CC} -dumpversion`.strip.split(".")[0,2].join(".")
 end
 
 def llvm_config_flags
-  "--build=#{host_triple} --host=#{host_triple} " \
-  "--enable-optimized --enable-targets=host-only"
+	enable_targets = "host-only"
+	enable_targets = "x86" if host_triple != target_triple
+  "--build=#{host_triple} --host=#{target_triple} " \
+  "--enable-optimized --enable-targets=#{enable_targets}"
 end

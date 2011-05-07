@@ -38,14 +38,15 @@ Daedalus.blueprint do |i|
   end
 
   gcc.ldflags << "-lstdc++" << "-lm"
-  gcc.ldflags << "-L/usr/local/lib -L/opt/local/lib"
+  #gcc.ldflags << "-L/usr/local/lib -L/opt/local/lib"
 
   make = "make"
 
   # TODO: Fix with Platform object
   case RUBY_PLATFORM
   when /linux/i
-    gcc.ldflags << '-Wl,--export-dynamic' << "-lrt" << "-lcrypt" << "-ldl" << "-lpthread"
+    gcc.ldflags << '-Wl,--export-dynamic'
+    #gcc.ldflags << '-Wl,--export-dynamic' << "-lrt" << "-lcrypt" << "-ldl" << "-lpthread"
   when /freebsd/i
     gcc.ldflags << '-lcrypt' << '-pthread' << '-rdynamic'
     make = "gmake"
