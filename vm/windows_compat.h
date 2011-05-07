@@ -255,8 +255,13 @@ int fcntl(int fildes, int cmd, ...);
 #define set_jump(x)       setjmp(x)
 #define long_jump(x, y)   longjmp(x, y)
 #else
+#ifdef __xomb__
+#define set_jump(x)       setjmp(x)
+#define long_jump(x, y)   longjmp(x, y)
+#else
 #define set_jump(x)       _setjmp(x)
 #define long_jump(x, y)   _longjmp(x, y)
+#endif
 #endif
 
 #ifdef RBX_WINDOWS
